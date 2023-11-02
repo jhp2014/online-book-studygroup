@@ -1,0 +1,68 @@
+# ?? ?? ?
+spring.security.oauth2.client:
+  registration:
+    kakao:
+      client-id: ${KAKAO_CLIENT_ID}
+      client-secret: ${KAKAO_CLIENT_SECRET}
+      scope:
+        - account_email
+        - profile_nickname
+      authorization-grant-type: authorization_code
+      redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+      client-name: Kakao
+      client-authentication-method: POST
+  provider:
+    kakao:
+      authorization-uri: https://kauth.kakao.com/oauth/authorize
+      token-uri: https://kauth.kakao.com/oauth/token
+      user-info-uri: https://kapi.kakao.com/v2/user/me
+      user-name-attribute: id
+
+jwt.secret: ${JWT_SECRET}
+
+---
+spring.config.activate.on-profile: dev
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+
+spring.data.web.pageable.max-page-size: 50
+
+spring.datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+
+spring.jpa:
+    hibernate:
+      ddl-auto: create
+      default_batch_fetch_size: 100
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+spring.h2:
+    console:
+      path: /h2-console
+      enabled: true
+---
+spring.config.activate.on-profile: prod
+spring.data.web.pageable.max-page-size: 50
+spring.jpa:
+  hibernate:
+    ddl-auto: none
+    default_batch_fetch_size: 100
+
+  datasource: #???? ?? ?? ??
+    driver-class-name: org.h2.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+
+
+
+
