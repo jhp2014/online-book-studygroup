@@ -1,4 +1,4 @@
-package member.domain;
+package com.project.bookstudy.member.domain;
 
 import lombok.*;
 import javax.persistence.*;

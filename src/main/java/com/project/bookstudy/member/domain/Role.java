@@ -1,4 +1,4 @@
-package member.domain;
+package com.project.bookstudy.member.domain;
 
 public enum Role {
     MEMBER("ROLE_MEMBER"), MENTOR("ROLE_MENTOR"), ADMIN("ROLE_ADMIN");
